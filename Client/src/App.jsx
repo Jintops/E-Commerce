@@ -5,6 +5,7 @@ import Register from './pages/auth/Register'
 import Login from './pages/auth/Login' 
 import Layouts from './components/auth/Layouts'
 
+import Layout from './components/admin-view/Layout'
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
         </Route>
+        <Routes>
+          <Route path='/admin' element={<Layout/>}></Route>
+        </Routes>
       </Routes>
     </div>
   )
