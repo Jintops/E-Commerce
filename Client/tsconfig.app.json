@@ -34,7 +34,7 @@
       "allowSyntheticDefaultImports": true,
       "esModuleInterop": true
     },
-    "include": ["src"],
+    "include": ["src", "src/components/shopping-view/.jsx"],
     "exclude": ["node_modules", "dist"]
   }
   
