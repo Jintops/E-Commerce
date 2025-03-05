@@ -61,6 +61,7 @@ const Register = () => {
         setFormData={setFormData}
         onSubmit={onSubmit}
       />
+      
     </div>
   );
 }
