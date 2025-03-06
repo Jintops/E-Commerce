@@ -26,7 +26,8 @@ const Register = () => {
       toast(data?.payload?.message); // ✅ Correct toast usage
       navigate("/auth/login");
     } else {
-      toast.error(data?.payload?.message); // ✅ Better way to show errors
+      toast.error(data?.payload?.message);
+       // ✅ Better way to show errors
     }
   }
 

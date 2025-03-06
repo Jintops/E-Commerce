@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/api/auth',authRouter)
 
+
 const Port = process.env.PORT || 5000;
 
 mongoose.connect('mongodb+srv://jintops2003:jinto%402003@cluster0.jpkxj.mongodb.net/')
