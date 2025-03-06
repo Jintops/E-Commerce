@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from "react";
 import CommonForm from "@/components/common/Form";
-// import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 import { loginFormControls } from "@/config";
-// import { loginUser } from "@/store/auth-slice";
-import { useState } from "react";
+import { loginUser } from "../../store/authSlice";  
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -11,27 +10,21 @@ const initialState = {
   email: "",
   password: "",
 };
+
 const Login = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
-  // const { toast } = useToast();
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault();
 
-    dispatch(loginUser(formData)).then((data) => {
-      if (data?.payload?.success) {
-        toast({
-          title: data?.payload?.message,
-        });
-      }
-      //  else {
-      //   toast({
-      //     title: data?.payload?.message,
-      //     variant: "destructive",
-      //   });
-      // }
-    });
+    const data = await dispatch(loginUser(formData));
+
+    if (data?.payload?.success) {
+      toast.success(data?.payload?.message); // ✅ Correct toast usage
+    } else {
+      toast.error(data?.payload?.message); // ✅ Shows error clearly
+    }
   }
 
   return (
@@ -41,7 +34,7 @@ const Login = () => {
           Sign in to your account
         </h1>
         <p className="mt-2">
-          Don't have an account
+          Don't have an account?
           <Link
             className="font-medium ml-2 text-primary hover:underline"
             to="/auth/register"
@@ -59,6 +52,6 @@ const Login = () => {
       />
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

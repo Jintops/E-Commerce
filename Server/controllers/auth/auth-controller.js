@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
         success: false,
         message: "User already exists with the same email! Please try again with another email"
       })
-    }
+    }  
     const hashPassword = await bcrypt.hash(password, 12);
     const newUser = new User({
       userName,
@@ -76,4 +76,37 @@ const loginUser = async (req, res) => {
   }
 }
 
-module.exports = { registerUser,loginUser };
+const logoutUser =(req,res)=>{
+  res.clearCookie('token').json(
+    {
+      success:true,
+      message:"logout successfully"
+    }
+  )
+}
+
+
+const authMiddleware=async(req,res,next)=>{
+  const token=req.cookies.token;
+  if(!token){
+    return res.status(401).json({
+      success:false,
+      message:"Unauthorised User!"
+    })
+  }
+  try{
+      
+    const decoded=await jwt.verify(token,'CLIENT_SECRET_KEY');
+    req.user=decoded
+    next();
+
+  }catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'some error occured'
+    })
+  }
+}
+
+module.exports = { registerUser,loginUser,logoutUser,authMiddleware };

@@ -17,10 +17,13 @@ import Home from './pages/shopping-view/Home'
 import Listing from './pages/shopping-view/Listing'
 import CheckAuth from './components/common/CheckAuth'
 import UnauthPage from './pages/unauth-page/UnauthPage'
+import { useSelector } from 'react-redux'
 
 const App = () => {
-  const isAuthenticated=false;
-  const user=null;
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  
 
 
   return (
