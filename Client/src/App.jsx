@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { Skeleton } from "@/components/ui/skeleton"
 
 import Register from './pages/auth/Register'
 import Login from './pages/auth/Login' 
@@ -17,14 +18,22 @@ import Home from './pages/shopping-view/Home'
 import Listing from './pages/shopping-view/Listing'
 import CheckAuth from './components/common/CheckAuth'
 import UnauthPage from './pages/unauth-page/UnauthPage'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkAuth } from './store/authSlice'
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
   );
-  
+  console.log(user);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+  
+  if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
   return (
     <div>
