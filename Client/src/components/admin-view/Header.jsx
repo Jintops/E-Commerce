@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/authSlice";
 
-const AdminHeader = () => {
+const AdminHeader = ({ setOpen }) => {
   
    const dispatch = useDispatch();
 
