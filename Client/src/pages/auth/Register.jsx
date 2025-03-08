@@ -17,7 +17,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  async function onSubmit(event) {
+   const onSubmit=async(event) =>{
     event.preventDefault();
     
     const data = await dispatch(registerUser(formData));

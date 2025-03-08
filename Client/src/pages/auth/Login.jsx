@@ -15,7 +15,7 @@ const Login = () => {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
 
-  async function onSubmit(event) {
+   const onSubmit = async(event)=> {
     event.preventDefault();
 
     const data = await dispatch(loginUser(formData));

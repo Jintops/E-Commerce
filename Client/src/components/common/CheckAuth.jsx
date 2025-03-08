@@ -41,4 +41,4 @@ const CheckAuth = ({ isAuthenticated, user, children }) => {
 }
 
 export default CheckAuth
-
+ 
